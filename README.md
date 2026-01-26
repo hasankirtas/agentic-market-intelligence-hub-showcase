@@ -111,8 +111,26 @@ While the MVP validates the architecture within the Cloud Hosting sector, the sy
 
 ## 6. Architecture Logic
 
-The system relies on a sequential agentic workflow because **agentic design allows independent evolution of observation, interpretation, and communication**. This modular design ensures that each component can be independently upgraded.
+The MVP currently uses **deterministic logic** (rules-based change detection), but the architecture is fundamentally **Agentic**—not a monolithic pipeline. This distinction is the project's core engineering value:
 
+### Why Agentic Architecture Matters?
+
+**Traditional Approach (Linear Pipeline):**
+`Scrape` → `Compare` → `Alert`
+*Constraint: If you want to add AI-powered analysis, you usually have to rewrite the entire flow.*
+
+**Our Approach (Modular Agents):**
+`Watcher Agent` → `Analyst Agent` → `Reporter Agent`
+*Advantage: Each agent is **independently upgradeable**.*
+
+*   **Stateful Autonomy**: Each agent maintains its own context. The Watcher doesn't need to know *why* the Analyst flagged a change—it just provides clean data. This separation means you can swap the Analyst's logic (from rules to LLM) without touching data collection.
+*   **Evolutionary Intelligence**: The current deterministic agents serve as **architectural scaffolding** for future AI.
+    *   *Today*: Analyst uses `if price_change > 5%: alert()`
+    *   *Tomorrow*: Analyst uses `GPT-5: "Explain why this pricing shift matters strategically"`
+    *   **No rewrite needed**—same interfaces, smarter logic.
+*   **Failure Isolation**: If the Reporter's email service fails, the Analyst still processes data. If web scraping breaks, the Analyst waits for valid input rather than crashing.
+
+**This Agentic Foundation transforms the system from a brittle script into a scalable platform, establishing the perfect structural base for future sophisticated AI integration.**
 
 ### Agent Roles
 
