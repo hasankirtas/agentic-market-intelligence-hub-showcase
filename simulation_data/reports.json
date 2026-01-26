@@ -1,0 +1,47 @@
+[
+    {
+        "id": "rpt_dec_04",
+        "title": "Q4 2025 Competitive Landscape Wrap-up",
+        "date": "Dec 31, 2025",
+        "summary": "Analysis suggests a consolidation of enterprise pricing tiers. Vercel and Netlify ended the year with aggressive enterprise restructuring. Recommend reviewing Q1 budget allocation for hosting services.",
+        "details": "EXECUTIVE SUMMARY:\nQ4 2025 marked a pivotal shift in the JAMstack ecosystem. Both Vercel and Netlify moved to consolidate their upper-tier offerings, effectively forcing mid-sized startups into Enterprise plans earlier in their growth cycle.\n\nKEY FINDINGS:\n1. Vercel's \"Pro\" plan price hike (20%) was aimed directly at filtering out high-bandwidth hobbyist projects.\n2. Netlify's retention strategy focused on long-term contracts, offering significant Q1 2026 discounts for annual lock-ins.\n3. Cloudflare remains the low-cost disruptor but is steadily increasing complexity in its developer experience.\n\nRECOMMENDATION:\nFor Q1 2026, we strongly advise auditing all \"Pro\" workspaces. Users with >500GB bandwidth should evaluate Cloudflare Pages as a cost-saving migration target.",
+        "type": "Quarterly",
+        "company": "All"
+    },
+    {
+        "id": "rpt_dec_03",
+        "title": "Critical Alert: Vercel Pricing Surge",
+        "date": "Dec 22, 2025",
+        "summary": "IMMEDIATE ACTION: Vercel Pro plan base increased to $24/seat. New usage limits on Edge Middleware may trigger overages. Audit current function invocations to mitigate cost impact.",
+        "details": "ALERT DETAILS:\nEffective immediately, Vercel has updated its pricing model for the Pro tier.\n- Seat Cost: $20 -> $24 / month\n- Edge Middleware Invocations: Now capped at 1M / month (previously 2M).\n- Overage Fee: $5 per additional 1M requests.\n\nIMPACT ANALYSIS:\nBased on your current usage patterns (approx. 1.5M invocations/mo), this change will result in an estimated $20/mo increase per project in overage fees unless optimized.\n\nACTION ITEMS:\n1. Review all middleware functions for unnecessary invocations (e.g., static asset headers).\n2. Consider moving static routing logic to `next.config.js` redirects instead of Middleware.",
+        "type": "Emergency",
+        "company": "Vercel"
+    },
+    {
+        "id": "rpt_dec_02",
+        "title": "Weekly Market Analysis",
+        "date": "Dec 15, 2025",
+        "summary": "Netlify's holiday campaign targets SMB acquisition with aggressive discounting. Cloudflare maintains stable pricing but introduces beta features for Workers AI. No improved incentives detected from Vercel this week.",
+        "details": "MARKET SNAPSHOT (Week of Dec 15):\n- Netlify: Launched \"Winter Deploy\" campaign. 20% off Pro plans for first 3 months. Good opportunity for new sub-projects.\n- Vercel: Quiet on the pricing front. Released v34 of their CLI with minor bug fixes.\n- Cloudflare: Announced \"Workers AI\" vector database integration in open beta. This is a direct competitor to Vercel's AI SDK + Pinecone stack.\n\nSTRATEGIC ADVICE:\nNo immediate action required. Monitor Cloudflare's AI pricing as it exits beta in early 2026.",
+        "type": "Weekly",
+        "company": "Netlify"
+    },
+    {
+        "id": "rpt_dec_01",
+        "title": "Feature Watch: Cloudflare Workers",
+        "date": "Dec 10, 2025",
+        "summary": "Cloudflare Workers now supports persistent SQL storage natively. This feature directly competes with Vercel KV and creates a lower-latency alternative for edge-heavy applications.",
+        "details": "TECHNICAL BRIEF: D1 SQL Database\nCloudflare has moved D1 (their native SQL database) to General Availability (GA).\n- Performance: Sub-10ms reads globally.\n- Pricing: $0.75 / GB storage (significantly cheaper than Vercel KV).\n- Compatibility: Works natively with Workers.\n\nCOMPETITIVE INTEL:\nThis move undercuts Vercel's storage story. Vercel relies on Upstash (KV) and Postgres partners (Neon). Cloudflare owning the full stack (Compute + Storage) at the edge gives them a latency advantage for purely dynamic apps.",
+        "type": "Insight",
+        "company": "Cloudflare"
+    },
+    {
+        "id": "rpt_nov_04",
+        "title": "Weekly Market Analysis",
+        "date": "Dec 01, 2025",
+        "summary": "Market remains stable entering December. Deployment frequency across major providers shows typical seasonal dip. Good window for infrastructure maintenance updates.",
+        "details": "MARKET SNAPSHOT (Week of Dec 01):\nA quiet week across the board as major dev-tool companies prepare for holiday freezes.\n- Deployment activity down 15% industry-wide.\n- Support response times slightly slower (avg 4h -> 6h).\n\nOPPORTUNITY:\nUse this stable window to perform dependency upgrades (Next.js 16, etc.) and infrastructure cleanups before the Jan 2026 rush.",
+        "type": "Weekly",
+        "company": "All"
+    }
+]

@@ -1,0 +1,37 @@
+[
+    {
+        "target": "Vercel Pricing",
+        "type": "Manual Trigger",
+        "duration": "45s",
+        "status": "Completed",
+        "time": "Just now"
+    },
+    {
+        "target": "Netlify Enterprise",
+        "type": "Scheduled",
+        "duration": "1m 20s",
+        "status": "Completed",
+        "time": "2h ago"
+    },
+    {
+        "target": "Cloudflare Workers",
+        "type": "Scheduled",
+        "duration": "55s",
+        "status": "Completed",
+        "time": "2h ago"
+    },
+    {
+        "target": "Vercel Changelog",
+        "type": "Scheduled",
+        "duration": "2m",
+        "status": "Warning",
+        "time": "6h ago"
+    },
+    {
+        "target": "Render Pricing",
+        "type": "Manual Trigger",
+        "duration": "30s",
+        "status": "Failed",
+        "time": "Yesterday"
+    }
+]

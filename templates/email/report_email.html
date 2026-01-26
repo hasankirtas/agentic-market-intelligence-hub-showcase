@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Intelligence Update</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --card: #ffffff;
+            --border: #e0e7ff;
+            --primary: #2563eb;
+            --primary-fore: #ffffff;
+            --muted: #6b7280;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 26px;
+            color: #111827;
+        }
+        .subtitle {
+            margin: 0 0 16px 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-fore);
+            background: var(--primary);
+        }
+        .metrics {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 18px 0;
+        }
+        .metric {
+            flex: 1 1 140px;
+            background: #eef2ff;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .metric.success { background: #ecfdf3; border-color: #bbf7d0; }
+        .metric.danger { background: #fef2f2; border-color: #fecdd3; }
+        .metric.info { background: #e0f2fe; border-color: #bae6fd; }
+        .metric h4 {
+            margin: 0;
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .metric .value {
+            margin-top: 6px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+        .pill {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            background: #e0f2fe;
+            color: #0369a1;
+            margin-right: 6px;
+        }
+        .section {
+            margin: 18px 0;
+        }
+        .section h3 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            color: #0f172a;
+        }
+        .list {
+            margin: 6px 0 0 0;
+            padding-left: 18px;
+            color: #1f2937;
+        }
+        .list li { margin-bottom: 6px; }
+        .subhead {
+            margin: 8px 0 14px 0;
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .cta {
+            margin: 20px 0;
+        }
+        .cta a {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: var(--primary);
+            color: #fff !important;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .card { padding: 20px; }
+            .metrics { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+                <div>
+                    <h1>📊 Competitive Intelligence Report</h1>
+                    <p class="subtitle">This report has been prepared by Market Intelligence Hub.</p>
+                </div>
+                <span class="badge">
+                    {% if report.report_type == "emergency" %}🚨 Emergency{% else %}📅 Scheduled{% endif %}
+                </span>
+            </div>
+
+            <div class="metrics">
+                <div class="metric success">
+                    <h4>Total Changes</h4>
+                    <div class="value">{{ report.changes_detected }}</div>
+                </div>
+                <div class="metric info">
+                    <h4>Critical Changes</h4>
+                    <div class="value">{{ report.critical_changes }}</div>
+                </div>
+                <div class="metric info">
+                    <h4>Generated</h4>
+                    <div class="value">{{ report.generated_at.strftime('%b %d, %Y %H:%M UTC') }}</div>
+                </div>
+            </div>
+
+            {% if subtitle %}
+            <div class="subhead">
+                {{ subtitle }}
+            </div>
+            {% endif %}
+
+            {% if report.report_content %}
+                {{ report.report_content | safe }}
+            {% else %}
+                <div class="section">
+                    <h3>Summary</h3>
+                    <p>We detected no changes in the monitored competitors during this period. Stability can be an advantage — a good moment to refine positioning and outreach.</p>
+                </div>
+                <div class="section">
+                    <h3>Insights</h3>
+                    <ul class="list">
+                        <li>📌 Competitors may be consolidating features instead of launching new ones.</li>
+                        <li>📌 A stable window lets you test pricing/messaging without rapid external shifts.</li>
+                        <li>📌 Watch for sudden announcements after this quiet period.</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>Recommendations</h3>
+                    <ul class="list">
+                        <li>✅ Use this lull to gather customer feedback and strengthen differentiators.</li>
+                        <li>✅ Prepare playbooks for quick response when competitors move again.</li>
+                        <li>✅ Revisit onboarding/activation flows to capture users while the market is quiet.</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>Risk / Impact</h3>
+                    <p>No critical risks identified. Keep lightweight monitoring to catch any breakout changes early.</p>
+                </div>
+            {% endif %}
+
+            <div class="cta">
+                <a href="{{ dashboard_url }}">Dashboard'a Git →</a>
+            </div>
+
+            <div class="footer">
+                Best regards,<br/>Market Intelligence Hub Team<br/>
+                Report ID: {{ report.report_id }}<br/>
+                <a href="{{ dashboard_url }}">Dashboard</a> | <a href="{{ dashboard_url }}">Config Settings</a> | <a href="{{ dashboard_url }}">Unsubscribe</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,89 @@
+{
+    "chart_data": [
+        {
+            "name": "Dec 1",
+            "vercel": 20,
+            "netlify": 19,
+            "cloudflare": 25
+        },
+        {
+            "name": "Dec 5",
+            "vercel": 20,
+            "netlify": 19,
+            "cloudflare": 25
+        },
+        {
+            "name": "Dec 10",
+            "vercel": 20,
+            "netlify": 19,
+            "cloudflare": 24
+        },
+        {
+            "name": "Dec 15",
+            "vercel": 20,
+            "netlify": 15,
+            "cloudflare": 25
+        },
+        {
+            "name": "Dec 18",
+            "vercel": 20,
+            "netlify": 15,
+            "cloudflare": 25
+        },
+        {
+            "name": "Dec 22",
+            "vercel": 24,
+            "netlify": 15,
+            "cloudflare": 25
+        },
+        {
+            "name": "Dec 25",
+            "vercel": 24,
+            "netlify": 15,
+            "cloudflare": 25
+        },
+        {
+            "name": "Dec 28",
+            "vercel": 24,
+            "netlify": 19,
+            "cloudflare": 25
+        },
+        {
+            "name": "Dec 31",
+            "vercel": 24,
+            "netlify": 19,
+            "cloudflare": 25
+        }
+    ],
+    "recent_insights": [
+        {
+            "company": "Vercel",
+            "change": "Pro Plan Price Increase ($20 -> $24)",
+            "severity": "high",
+            "date": "Dec 22"
+        },
+        {
+            "company": "Netlify",
+            "change": "Holiday Discount Campaign",
+            "severity": "medium",
+            "date": "Dec 15"
+        },
+        {
+            "company": "Cloudflare",
+            "change": "New Workers Features Announced",
+            "severity": "low",
+            "date": "Dec 10"
+        },
+        {
+            "company": "Vercel",
+            "change": "Updated Enterprise Terms",
+            "severity": "medium",
+            "date": "Dec 05"
+        }
+    ],
+    "kpi_metrics": {
+        "monitoring_targets": 3,
+        "critical_changes": 2,
+        "reports_generated": 12
+    }
+}
