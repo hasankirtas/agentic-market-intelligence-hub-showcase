@@ -3,7 +3,7 @@
 # 🕵️ Market Intelligence Hub
 **Autonomous competitive awareness — from signal to strategy.**
 
-![GitHub Stars](https://img.shields.io/github/stars/your-org/market-intelligence-hub?style=for-the-badge&logo=github&color=gold)
+![GitHub Stars](https://img.shields.io/github/stars/hasankirtas/agentic-market-intelligence-hub-showcase?style=for-the-badge&logo=github&color=gold)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white)
 ![Architecture](https://img.shields.io/badge/Architecture-Agentic-8e44ad.svg?style=for-the-badge)
