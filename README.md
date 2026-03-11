@@ -9,8 +9,6 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Agentic-8e44ad.svg?style=for-the-badge)
 ![LLM](https://img.shields.io/badge/LLM-GPT--4o-green.svg?style=for-the-badge)
 
-| [English](#) |
-
 ---
 
 **[Overview](#-overview) • [Architecture](#-architecture) • [Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started)**
