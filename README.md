@@ -1,150 +1,192 @@
 <div align="center">
 
-<br/>
+# 🕵️ Market Intelligence Hub
+**Autonomous competitive awareness — from signal to strategy.**
 
-<pre>
-███╗   ███╗██╗██╗  ██╗
-████╗ ████║██║██║  ██║
-██╔████╔██║██║███████║
-██║╚██╔╝██║██║██╔══██║
-██║ ╚═╝ ██║██║██║  ██║
-╚═╝     ╚═╝╚═╝╚═╝  ╚═╝
-</pre>
+![GitHub Stars](https://img.shields.io/github/stars/your-org/market-intelligence-hub?style=for-the-badge&logo=github&color=gold)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-Agentic-8e44ad.svg?style=for-the-badge)
+![LLM](https://img.shields.io/badge/LLM-GPT--4o-green.svg?style=for-the-badge)
 
-### **Market Intelligence Hub**
-*Autonomous competitive awareness — from signal to strategy.*
+| [English](#) |
 
-<br/>
+---
 
-![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)
-![Architecture](https://img.shields.io/badge/Architecture-Agentic-6C3483?style=flat-square&logo=buffer&logoColor=white)
-![Targets](https://img.shields.io/badge/Targets-Vercel%20·%20Netlify%20·%20Cloudflare-00C7B7?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-F0B429?style=flat-square)
-![Status](https://img.shields.io/badge/Status-MVP-2ECC71?style=flat-square)
-
-<br/>
-
-> ⚠️ **Public Architectural Showcase** — Core agent patterns and representative implementations are open. Production infrastructure, specialized modules, and proprietary logic are maintained internally.
-
-<br/>
-
-**[Overview](#-overview) • [Architecture](#-architecture) • [Design Decisions](#%EF%B8%8F-design-decisions) • [MVP Scope](#-mvp-scope) • [Getting Started](#-getting-started)**
+**[Overview](#-overview) • [Architecture](#-architecture) • [Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started)**
 
 </div>
 
 ---
 
-## 🔭 Overview
+**Market Intelligence Hub** is a production-grade, modular **Agentic Intelligence** system designed for continuous competitive monitoring of cloud hosting markets. As a **Production-Grade MVP**, the system is specifically optimized for tracking **Vercel, Netlify, and Cloudflare** pricing pages, showcasing the power of agentic workflows in transforming raw web observations into actionable strategic signals.
 
-**Competitive advantage has a time constant.** A competitor's pricing change on Monday requires a response by Tuesday — not Friday.
+Unlike traditional monitoring scripts, it uses a **"Three Minds, One Mission"** philosophy — where three specialized agents independently handle observation, analysis, and communication, each upgradeable without touching the others.
 
-Manual monitoring breaks down because it is neither continuous nor contextual. Generic scrapers detect change but cannot interpret it. Analyst teams provide context but cannot scale. The gap between *detection* and *decision-ready intelligence* is where strategic opportunity is lost.
+---
 
-```
-Traditional Flow              Our Flow
-──────────────────────        ──────────────────────────────
-Scrape → Diff → Alert         Observe → Interpret → Act
-      ↑ hours/days                    ↑ minutes
-```
+## 🚀 Key Features
+
+- **👁️ Autonomous Observation:** The Watcher Agent continuously monitors live pricing pages with circuit-breaker patterns and exponential backoff — reliable ingestion without overloading targets.
+- **🧠 Deterministic Signal Detection:** The Analyst Agent applies precise threshold-based comparison logic. No hallucinations, no guesses — only verified, meaningful deltas are flagged.
+- **📡 LLM-Powered Synthesis:** Detected changes aren't just logged — the Reporter Agent uses language model reasoning to contextualize *what changed, why it matters, and what it signals strategically.*
+- **⚡ Minute-Level Latency:** From a competitor's pricing update to a business-ready brief in your inbox — in minutes, not days.
+- **🔇 Silent Guardian Model:** Operates quietly in the background. Scheduled digests for routine updates. Immediate alerts only for high-signal events.
+- **🛡️ Responsible Collection:** Public pages only, `robots.txt` respected, full audit trail, no raw HTML stored — ethical competitive intelligence by design.
 
 ---
 
 ## 🏗 Architecture
 
-MIH is built on a **modular agent pattern** — three agents, each owning a single responsibility, each independently upgradeable.
+The system follows a **modular agent pattern** with strict separation of concerns — each agent owns one responsibility and exposes a stable interface.
 
+```mermaid
+graph TD
+    Web([Live Pricing Pages]) --> Watcher[Watcher Agent]
+    Watcher --> Snapshots[(Timestamped Snapshots)]
+    Snapshots --> Analyst[Analyst Agent]
+    Analyst --> Signal{Change Detected?}
+
+    subgraph Targets [Monitored Targets]
+        Vercel[Vercel]
+        Netlify[Netlify]
+        CF[Cloudflare]
+    end
+
+    Signal -->|Yes — Δ > threshold| Reporter[Reporter Agent]
+    Signal -->|No| Idle([Continue Monitoring])
+    Reporter --> LLM[LLM Synthesis]
+    LLM --> Output([Markdown Brief / Email Alert])
+
+    Targets --> Web
 ```
-┌──────────────────────────────────────────────────────────────┐
-│                                                              │
-│   ┌──────────┐      ┌──────────┐      ┌──────────────────┐   │
-│   │  WATCHER │─────▶│ ANALYST  │─────▶│    REPORTER      │   │
-│   │          │      │          │      │                  │   │
-│   │Structured│      │ Δ-detect │      │ LLM synthesis    │   │
-│   │ingestion │      │ >5% flag │      │ → Markdown/Email │   │
-│   └──────────┘      └──────────┘      └──────────────────┘   │
-│                                                              │
-│   🎯  Vercel · Netlify · Cloudflare                          │
-└──────────────────────────────────────────────────────────────┘
-```
 
-### 👁️ `WatcherAgent` — Field Observer
+### 🤖 The Complete Agentic Pipeline
 
-Isolates live-web complexity from analysis logic. Executes structured extraction of pricing tiers, feature limits, and plan configurations. Implements circuit-breaker patterns and exponential backoff. Outputs clean, timestamped snapshots — nothing more.
+The system abandons monolithic monitoring scripts in favor of a deterministic, fault-tolerant pipeline built for high-tempo competitive markets. Each stage maps directly to a core agent:
 
-### 🧠 `AnalystAgent` — Change Detector
+1. **Structured Ingestion (`agents/watcher.py`):** The Watcher Agent fetches live pricing pages for all configured targets. It handles retries, respects rate limits, applies circuit-breaker logic, and emits clean structured snapshots — base pricing, tier limits, plan availability — with full timestamps.
 
-Compares snapshots with deterministic logic. Flags meaningful variance (price shifts, tier restructuring, feature additions/removals). Does not hallucinate; does not guess. Passes structured signals downstream.
+2. **Change Detection (`agents/analyst.py`):** The Analyst Agent compares the latest snapshot against the previous baseline. It applies deterministic thresholds (e.g., `price_change > 5%`, `tier_feature_added`) to flag only meaningful variance. Noise is filtered; strategic signals pass through.
 
-### 📡 `ReporterAgent` — Intelligence Synthesizer
-
-Receives flagged changes. Uses LLM reasoning to contextualize the signal — *what changed, why it matters, what it likely signals.* Outputs executive-grade briefs in minutes, not hours.
+3. **Strategic Synthesis (`agents/reporter.py`):** When a signal is flagged, the Reporter Agent activates. It feeds the detected change into an LLM prompt engineered for competitive context — producing a business-ready brief that explains the change, its likely strategic implication, and suggested response window. Output is delivered as Markdown and/or Email.
 
 ---
 
-## ⚙️ Design Decisions
+## 🛠 Tech Stack
 
-### Why Agents, Not a Pipeline?
+<div align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" height="40" alt="python" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/playwright/playwright-original.svg" height="40" alt="playwright" />
+  &nbsp;&nbsp;
+  <img src="https://openai.com/favicon.ico" height="40" alt="openai" />
+</div>
 
-A linear `scrape → compare → alert` script is brittle. Upgrading analysis logic requires touching data collection. Failures cascade.
+<br/>
 
-The agentic approach provides:
+- **Orchestration:** Custom agentic loop (no heavyweight framework dependency)
+- **Web Ingestion:** Playwright / httpx with exponential backoff
+- **Change Detection:** Deterministic rule engine
+- **LLM Synthesis:** GPT-4o (via OpenAI API)
+- **Storage:** SQLite snapshot store + audit log
+- **Delivery:** SMTP email + Markdown report generation
 
-- 🔒 **Failure isolation** — Reporter email failure doesn't affect Analyst processing
-- 🔄 **Independent upgrades** — swap `if price_change > 5%: flag()` for multi-source LLM reasoning without rewriting ingestion
-- 🤝 **Clear interfaces** — each agent exposes a stable contract; internals evolve freely
+---
 
-### 🔇 Communication Philosophy
+## 📂 Project Structure
 
-The system follows a *"silent guardian, vocal advisor"* model:
+```text
+src/
+├── agents/         # Watcher, Analyst, Reporter — core agent logic
+├── core/           # Snapshot model, diff engine, change classifier
+├── delivery/       # Email renderer, Markdown formatter
+├── storage/        # SQLite adapter, audit trail writer
+└── config/         # Target definitions, threshold config
+```
 
-- Monitors continuously without requiring attention
-- Surfaces insights through scheduled digests
-- Interrupts only on time-sensitive signals
+---
 
-### 🛡️ Data Ethics
+## 🏁 Getting Started
 
-- Public pricing pages only — no authenticated sessions, no PII
-- Respects `robots.txt` and rate limits
-- Outputs business metrics only — no raw HTML stored
-- Full audit trail with timestamps
+### 1. Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-org/market-intelligence-hub.git
+cd market-intelligence-hub
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 2. Configuration
+
+```bash
+cp .env.example .env
+```
+
+```env
+OPENAI_API_KEY=your_key_here
+SMTP_HOST=smtp.yourdomain.com
+SMTP_USER=alerts@yourdomain.com
+SMTP_PASS=your_smtp_password
+ALERT_RECIPIENT=you@yourdomain.com
+```
+
+### 3. Define Monitoring Targets
+
+Edit `config/targets.yaml` to configure the pages and thresholds:
+
+```yaml
+targets:
+  - name: Vercel
+    url: https://vercel.com/pricing
+    thresholds:
+      price_change_pct: 5
+      tier_change: true
+  - name: Netlify
+    url: https://www.netlify.com/pricing/
+    ...
+```
+
+### 4. Run the System
+
+```bash
+# Single monitoring cycle
+python run.py --once
+
+# Continuous mode (scheduled)
+python run.py --schedule "0 */6 * * *"
+```
 
 ---
 
 ## 🎯 MVP Scope
 
 | Dimension | Implementation |
-|-----------|---------------|
-| 🌐 Monitored targets | Vercel, Netlify, Cloudflare |
-| 📡 Detected signals | Pricing & tier changes |
-| 🔬 Detection logic | Deterministic threshold-based |
-| 🧠 Synthesis | LLM-powered strategic context |
-| 📄 Output formats | Markdown report, Email alert |
+|---|---|
+| 🌐 **Monitored Targets** | Vercel, Netlify, Cloudflare |
+| 📡 **Detected Signals** | Pricing & tier changes |
+| 🔬 **Detection Logic** | Deterministic threshold-based |
+| 🧠 **Synthesis** | LLM-powered strategic context |
+| 📄 **Output Formats** | Markdown report, Email alert |
 
-**Why cloud hosting?** Pricing here is rarely arbitrary — edge compute limits, tier restructuring, and feature gating are often competitive responses. This makes it an ideal testbed: changes are meaningful, correlated, and fast-moving.
-
----
-
-## 🚀 Getting Started
-
-```bash
-git clone https://github.com/your-org/market-intelligence-hub.git
-cd market-intelligence-hub
-pip install -r requirements.txt
-cp .env.example .env  # Add your API keys
-python run.py
-```
+**Why cloud hosting?** Pricing in this domain is rarely arbitrary. Edge compute limits, tier restructuring, and feature gating are often direct responses to competitor moves — making it an ideal testbed for observing correlated market signals at high velocity.
 
 ---
 
 ## 🔮 Roadmap
 
-The current deterministic agents are architectural scaffolding. The interfaces are stable; the intelligence evolves.
+The current deterministic agents serve as **architectural scaffolding** for future intelligence capabilities. The interfaces are stable — the reasoning inside evolves.
 
 ```
-Now    →  if price_change > threshold: flag()
-Near   →  pattern recognition across historical snapshots
-Later  →  predictive modeling, scenario-based recommendations
+Now    →  Deterministic: if price_change > threshold: flag()
+Near   →  Pattern recognition across historical snapshot series
+Later  →  Predictive modeling, scenario-based strategic recommendations
 ```
+
+The system already captures the data primitives — timestamped snapshots, structured change logs — needed for this evolution.
 
 ---
 
@@ -152,9 +194,11 @@ Later  →  predictive modeling, scenario-based recommendations
 
 <br/>
 
-*Intelligence is not about having more data.*
-*It's about understanding change before anyone else does.*
+*Competitive advantage is no longer about who has more data.*
+*It's about who understands change first — and acts within the response window.*
 
 <br/>
+
+*Disclaimer: This tool monitors publicly available pricing pages. It is intended for competitive research purposes only.*
 
 </div>
