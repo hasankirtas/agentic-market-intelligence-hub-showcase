@@ -83,7 +83,7 @@ The system abandons monolithic monitoring scripts in favor of a deterministic, f
 
 <br/>
 
-- **Orchestration:** Custom agentic loop (no heavyweight framework dependency)
+- **Orchestration:** LangGraph
 - **Web Ingestion:** Playwright / httpx with exponential backoff
 - **Change Detection:** Deterministic rule engine
 - **LLM Synthesis:** GPT-4o (via OpenAI API)
